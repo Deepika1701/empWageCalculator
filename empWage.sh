@@ -1,15 +1,29 @@
 echo "Welcome to employee wage computation:-"
-isPresent=0
-isAbsent=1
+isPresentFullTime=0
+isPresentPartTime=1
+isAbsent=2
 salaryPerHr=20
-randomNumber=$((RANDOM%2))
-if [ $randomNumber -eq isPresent ]
-then
+randomNumber=$((RANDOM%3))
+case $randomNumber in
+
+[0])
    empHr=8
-   echo "Employee is present"
-else
+   echo "Employee is present for full time"
+   daysalary=$((salaryPerHr*empHr))
+   echo $daysalary ;;
+
+[1])
+   empHr=4
+   echo "Employee is present for part time"
+   daysalary=$((salaryPerHr*empHr))
+   echo $daysalary ;;
+
+[2])
    empHr=0
    echo "Employee is absent"
-fi
-salary=$((salaryPerHr*empHr))
-echo $salary
+   daysalary=$((salaryPerHr*empHr))
+   echo $daysalary ;;
+
+*)
+echo "Your Input is Invalid" ;;
+esac
