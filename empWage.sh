@@ -3,27 +3,19 @@ isPresentFullTime=0
 isPresentPartTime=1
 isAbsent=2
 salaryPerHr=20
-randomNumber=$((RANDOM%3))
-case $randomNumber in
+for((day=1;day<=20;day++))
+do
+   randomNumber=$((RANDOM%3))
+   if [[ $randomNumber -eq $isPresent ]]
+   then
+        empHr=8
+   elif [ $randomNumber -eq $isPresentPartTime ]
+   then
+        empHr=4
+   else
+        empHr=0
+   fi
+   totalsalary=$((totalsalary+(salaryPerHr*empHr)))
+done
+echo "total salary "$totalsalary
 
-[0])
-   empHr=8
-   echo "Employee is present for full time"
-   daysalary=$((salaryPerHr*empHr))
-   echo $daysalary ;;
-
-[1])
-   empHr=4
-   echo "Employee is present for part time"
-   daysalary=$((salaryPerHr*empHr))
-   echo $daysalary ;;
-
-[2])
-   empHr=0
-   echo "Employee is absent"
-   daysalary=$((salaryPerHr*empHr))
-   echo $daysalary ;;
-
-*)
-echo "Your Input is Invalid" ;;
-esac
